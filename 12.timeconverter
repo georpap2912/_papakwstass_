@@ -1,0 +1,15 @@
+#12. time converter
+from datetime import datetime
+date1= datetime.now()
+day=input("Enter a day:")
+mon=input("Enter a month:")
+year=input("Enter a year:")
+day=int(day)
+mon=int(mon)
+year=int(year)
+date2=datetime(year,mon,day)
+difference= abs(date1-date2)
+
+print(difference.total_seconds())
+print(difference.total_seconds()//60**2)
+print(difference.total_seconds()//(24*3600))
