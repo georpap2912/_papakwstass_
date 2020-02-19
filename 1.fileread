@@ -1,0 +1,82 @@
+#1 File read
+#def which fixes length if symbol appears
+def lenfix(string):
+    if (string[-1]=='?'):
+        le=len(string)-1
+        return le
+    else:
+        le=len(string)
+        return le
+    if (string[-1]=='.'):
+        le=len(string)-1
+        return le
+    else:
+        le=len(string)
+        return le
+    if (string[-1]==','):
+        le=len(string)-1
+        return le
+    else:
+        le=len(string)
+        return le
+    if (string[-1]=='!'):
+        le=len(string)-1
+        return le
+    else:
+        le=len(string)
+        return le
+    if (string[-1]==':'):
+        le=len(string)-1
+        return le
+    else:
+        le=len(string)
+        return le
+def reverse(string):
+    reversestr=""
+    for i in string:
+        reversestr=i+reversestr
+    return reversestr
+def vowfix(string):
+    vowels=("a","e","i","o","u")
+    fixedstr=""
+    for letter in string:
+        if letter not in vowels:
+            fixedstr+=letter
+    return fixedstr
+file=input("Enter the name of the file:")
+infile= open(file,'r')
+s=" "
+s=infile.readline()
+L=s.split()
+lengths=[]
+for i in range(len(L)):
+    le=lenfix(L[i])
+    lengths+=[le]
+max1=max(lengths)
+max1word=L[lengths.index(max1)]
+lengths.remove(max1)
+L.remove(max1word)
+max2=max(lengths)
+max2word=L[lengths.index(max2)]
+lengths.remove(max2)
+L.remove(max2word)
+max3=max(lengths)
+max3word=L[lengths.index(max3)]
+lengths.remove(max3)
+L.remove(max3word)
+max4=max(lengths)
+max4word=L[lengths.index(max4)]
+lengths.remove(max4)
+L.remove(max4word)
+max5=max(lengths)
+max5word=L[lengths.index(max5)]
+lengths.remove(max5)
+L.remove(max5word)
+print(reverse(vowfix(max1word)),reverse(vowfix(max2word)),reverse(vowfix(max3word)),reverse(vowfix(max4word)),reverse(vowfix(max5word)))
+
+
+
+
+
+
+    
