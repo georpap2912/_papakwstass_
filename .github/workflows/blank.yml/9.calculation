@@ -1,0 +1,14 @@
+#9.Calculation
+print("Insert a number!!!:")
+x=int(input())
+sum1=0
+while x>9:
+    x=x*3+1
+    sum1=0
+    while x>0:
+        y=x%10
+        sum1=sum1+y
+        x=int(x/10)
+    x=sum1
+print(sum1)
+
