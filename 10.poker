@@ -1,0 +1,184 @@
+#10.poker
+import random
+import itertools
+
+cards=[1,2,3,4,5,6,7,8,9,10,"J","Q","K"]
+suits=["S","H","D","C"]
+deck=itertools.product(cards,suits)
+deck=list(deck)
+random.shuffle(deck)
+user_hand=[]
+comp_hand=[]
+for i in range(5):
+	user_hand+=[deck.pop()]
+	comp_hand+=[deck.pop()]
+print( "Your poker hand is:", user_hand)
+print( "Cpu's poker hand is:", comp_hand)
+usernums=[]
+compnums=[]
+for i in range(5):
+        usernums+=[user_hand[i][0]]
+        compnums+=[comp_hand[i][0]]
+for i in range (5):
+        if usernums[i]=='J':
+                usernums[i]=11
+        if usernums[i]=='Q':
+                usernums[i]=12
+        if usernums[i]=='K':
+                usernums[i]=13
+        if usernums[i]==1:
+                usernums[i]=14
+        if compnums[i]=='J':
+                compnums[i]=11
+        if compnums[i]=='Q':
+                compnums[i]=12
+        if compnums[i]=='K':
+                compnums[i]=13
+        if compnums[i]==1:
+                compnums[i]=14
+usernums.sort()
+compnums.sort()
+z=0
+#Four of a kind
+j=0
+k=0
+if (usernums.count(usernums[0])==4) or (usernums.count(usernums[1])==4):
+        j=1
+if (compnums.count(compnums[0])==4) or (compnums.count(compnums[1])==4):
+        k=1
+if (j==1) and (k==1):
+        if (usernums[0]> compnums[0]) or (usernums[1]> compnums[0]) or (usernums[1]> compnums[1]) or (usernums[0]> compnums[1]):
+                print("You win!!!")
+        if(usernums[0]< compnums[0]) or (usernums[1]< compnums[0]) or (usernums[1]< compnums[1]) or (usernums[0]< compnums[1]):
+                print("Cpu wins!!!")
+if (j==1) and (k==0):
+        print("You win!!!")
+if (j==0) and (k==1):
+        print("Cpu wins!!!")
+#Full house
+j=0
+k=0
+if (usernums[0]==usernums[1]==usernums[2]) and (usernums[3]==usernums[4]):
+        j=1
+if (compnums[0]==compnums[1]==compnums[2]) and (compnums[3]==compnums[4]):
+        k=1
+if (usernums[0]==usernums[1]) and (usernums[2]==usernums[3]==usernums[4]):
+        j=2
+if (compnums[0]==compnums[1]) and (compnums[2]==compnums[3]==compnums[4]):
+        k=2
+if (j==1) and (k==1):
+        if (usernums[0]> compnums[0]):
+                print("You win!!!")
+        elif (usernums[0]< compnums[0]):
+                print("Cpu wins!!!")
+        else:
+                if (usernums[3]> compnums[3]):
+                        print("You win!!!")
+                if (usernums[3]< compnums[3]):
+                        print("Cpu wins!!!")
+if (j==2) and (k==2):
+        if (usernums[2]> compnums[2]):
+                print("You win!!!")
+        elif (usernums[2]< compnums[2]):
+                print("Cpu wins!!!")
+        else:
+                if (usernums[0]> compnums[0]):
+                        print("You win!!!")
+                if (usernums[0]< compnums[0]):
+                        print("Cpu wins!!!")
+if (j==1) and (k==2):
+        if (usernums[0]> compnums[2]):
+                print("You win!!!")
+        elif (usernums[0]< compnums[2]):
+                print("Cpu wins!!!")
+        else:
+                if (usernums[3]> compnums[0]):
+                        print("You win!!!")
+                if (usernums[3]< compnums[0]):
+                        print("Cpu wins!!!")
+if (j==2) and (k==1):
+        if (usernums[2]> compnums[0]):
+                print("You win!!!")
+        elif (usernums[2]< compnums[0]):
+                print("Cpu wins!!!")
+        else:
+                if (usernums[0]> compnums[3]):
+                        print("You win!!!")
+                if (usernums[0]< compnums[3]):
+                        print("Cpu wins!!!")                        
+if (j==1) and (k==0):
+        print("You win!!!")
+if (j==0) and (k==1):
+        print("Cpu wins!!!")
+if (j==2) and (k==0):
+        print("You win!!!")
+if (j==0) and (k==2):
+        print("Cpu wins!!!")
+#flush
+j=0
+k=0
+if (user_hand[0][1]==user_hand[1][1]==user_hand[2][1]==user_hand[3][1]==user_hand[4][1]):
+        j=1
+if (comp_hand[0][1]==comp_hand[1][1]==comp_hand[2][1]==comp_hand[3][1]==comp_hand[4][1]):
+        k=1
+if (j==1) and (k==0):
+        print("You win!!!")
+if (j==0) and (k==1):
+        print("Cpu wins!!!")
+#straight
+j=0
+k=0
+if ((usernums[0]+1)==usernums[1]) and ((usernums[1]+1)==usernums[2]) and ((usernums[2]+1)==usernums[3]) and ((usernums[3]+1)==usernums[4]):
+        j=1
+if ((compnums[0]+1)==compnums[1]) and ((compnums[1]+1)==compnums[2]) and ((compnums[2]+1)==compnums[3]) and ((compnums[3]+1)==compnums[4]):
+        k=1
+if (usernums[0]==11) or (usernums[0]==12) or (usernums[0]==13):
+        j=0
+if (compnums[0]==11) or (compnums[0]==12) or (compnums[0]==13):
+        k=0
+if (j==1) and (k==1):
+        if (usernums[0]> compnums[0]):
+                print("You win!!!")
+        if (usernums[0]< compnums[0]):
+                print("Cpu wins!!!")
+#Three of a kind
+j=0
+k=0
+for i in range (0,2):
+        if (usernums.count(usernums[i])==3):
+                j=i
+        if (compnums.count(compnums[i])==3):
+                k=i
+if (j!=0) and (k!=0):
+        if (usernums[j]> compnums[k]):
+                print("You win!!!")
+        if (usernums[j]< compnums[k]):
+                print("Cpu wins!!!")
+if (j!=0) and (k==0):
+        print("You win!!!")
+if (j==0) and (k!=0):
+        print("Cpu wins!!!")
+#High card
+for i in range (4,0,-1):
+        if (usernums[i]> compnums[i]):
+                print("You win!!!")
+                z=1
+                break
+        if (usernums[i]<compnums[i]):
+                print("Cpu wins!!")
+                z=1
+                break
+if z==0:
+                      print("It's a tie")
+
+
+
+        
+
+
+        
+                
+
+                      
+
+
